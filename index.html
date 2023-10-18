@@ -107,6 +107,119 @@
           <button class="btn btn-primary w-100 my-2" onclick="haritaTemizle()">
             Haritayı Temizle
           </button>
+
+          <div id="ilceLegend" hidden>
+              <table>
+                <tr>
+                  <td>
+                    Renk
+                  </td>
+                  <td style="width: 25px;"></td>
+                  <td>
+                    Yangın Sayısı
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #007934;"></td>
+                  <td style="width: 25px;"></td>
+                  <td>
+                    0
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #12127d;"></td>
+                  <td style="width: 25px;"></td>
+                  <td>
+                    1 - 29
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #ff6700;"></td>
+                  <td style="width: 25px;"></td>
+                  <td>
+                    30 - 59
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #dcff00;"></td>
+                  <td style="width: 25px;"></td>
+                  <td>
+                    60-89
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #800000;"></td>
+                  <td style="width: 25px;"></td>
+                  <td>
+                    90-119
+                  </td>
+                </tr>
+                <tr>
+                  <td style="background-color: #011400;"></td>
+                  <td style="width: 25px;"></td>
+                  <td>
+                    >120
+                  </td>
+                </tr>
+              </table>
+          </div>
+
+          <div id="mahalleLegend" hidden>
+            <table>
+              <tr>
+                <td>
+                  Renk
+                </td>
+                <td style="width: 25px;"></td>
+                <td>
+                  Yangın Sayısı
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #007934;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  0
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #12127d;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  1 - 29
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #ff6700;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  30 - 59
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #dcff00;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  60-89
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #800000;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  90-119
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #011400;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  >120
+                </td>
+              </tr>
+            </table>
+        </div>
+
         </div>
         <!-- HARİTA Çalışma Alanı-->
         <div class="col-9">
@@ -153,6 +266,34 @@
                           OpenStreetMap: osmMap,
                         };
         var layerControl = L.control.layers(baseMaps).addTo(map);
+
+        itfGrup()
+
+        function itfGrup(){
+        var geojsonURL = "./FakeDB/itfGrup/itfGrup.geojson";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", geojsonURL, true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var geojson = JSON.parse(xhr.responseText);
+            // GeoJSON verilerini işleme
+            for (var i = 0; i < geojson.features.length; i++) {
+              var feature = geojson.features[i];
+              var coordinates = feature.geometry.coordinates;
+              var myIcon = L.icon({
+                                    iconUrl: './ui/img/firetruck.png',
+                                    iconSize: [32, 32],
+                                });
+              var marker = L.marker(coordinates, {
+                                                    icon: myIcon
+                                                  })
+                                                    .addTo(map)
+                                                    .bindPopup(String(feature.properties.AD))
+            }
+          }
+        };
+        xhr.send();
+      }
     </script>
 
 
@@ -195,7 +336,6 @@
         divSinir.hidden = !divSinir.hidden
       }
 
-
       function haritaTemizle() {
         location.reload()
       }
@@ -227,6 +367,11 @@
 
       // ilceleri goster
       function ilceleriGoster() {
+
+        var legend = document.getElementById("ilceLegend")
+        legend.hidden = !legend.hidden
+
+
         var geojsonURL = "./FakeDB/ilceler/ilceDuzen.geojson";
         var xhr = new XMLHttpRequest();
         xhr.open("GET", geojsonURL, true);
@@ -245,7 +390,7 @@
                   fillOpacity: 0.5,
                 })
                   .addTo(map)
-                  .bindPopup("Bu mahallede yangın olmadı.");
+                  .bindPopup("Bu ilçede yangın olmadı.");
               }
               // lacivert
               else if (
@@ -259,12 +404,12 @@
                 })
                   .addTo(map)
                   .bindPopup(
-                    "Yangın Sayısı:" + String(feature.properties.TOPLAM)
+                    String(feature.properties.AD) + " İlçesindeki Yangın Sayısı:" + String(feature.properties.TOPLAM)
                   );
               }
               // turuncu
               else if (
-                feature.properties.TOPLAM > 30 &&
+                feature.properties.TOPLAM > 29 &&
                 feature.properties.TOPLAM < 60
               ) {
                 L.polygon(coordinates[0], {
@@ -274,12 +419,12 @@
                 })
                   .addTo(map)
                   .bindPopup(
-                    "Yangın Sayısı:" + String(feature.properties.TOPLAM)
+                    String(feature.properties.AD) + " İlçesindeki Yangın Sayısı:" + String(feature.properties.TOPLAM)
                   );
               }
               // sarı
               else if (
-                feature.properties.TOPLAM > 60 &&
+                feature.properties.TOPLAM > 59 &&
                 feature.properties.TOPLAM < 90
               ) {
                 L.polygon(coordinates[0], {
@@ -289,12 +434,12 @@
                 })
                   .addTo(map)
                   .bindPopup(
-                    "Yangın Sayısı:" + String(feature.properties.TOPLAM)
+                    String(feature.properties.AD) + " İlçesindeki Yangın Sayısı:" + String(feature.properties.TOPLAM)
                   );
               }
               // kırmızı
               else if (
-                feature.properties.TOPLAM > 90 &&
+                feature.properties.TOPLAM > 89 &&
                 feature.properties.TOPLAM < 120
               ) {
                 L.polygon(coordinates[0], {
@@ -304,11 +449,11 @@
                 })
                   .addTo(map)
                   .bindPopup(
-                    "Yangın Sayısı:" + String(feature.properties.TOPLAM)
+                    String(feature.properties.AD) + " İlçesindeki Yangın Sayısı:" + String(feature.properties.TOPLAM)
                   );
               }
               // siyah
-              else if (feature.properties.TOPLAM > 120) {
+              else if (feature.properties.TOPLAM > 119) {
                 L.polygon(coordinates[0], {
                   fillColor: "#011400",
                   color: "#011400",
@@ -316,7 +461,7 @@
                 })
                   .addTo(map)
                   .bindPopup(
-                    "Yangın Sayısı:" + String(feature.properties.TOPLAM)
+                    String(feature.properties.AD) + " İlçesindeki Yangın Sayısı:" + String(feature.properties.TOPLAM)
                   );
               }
             }
@@ -327,6 +472,8 @@
 
       // mahalle goster
       function mahalleGoster(ilce) {
+        var legend = document.getElementById("mahalleLegend")
+        legend.hidden = !legend.hidden
         var geojsonURL = "./FakeDB/mahalle/mahalleDuzen.geojson";
         var xhr = new XMLHttpRequest();
         xhr.open("GET", geojsonURL, true);
@@ -359,12 +506,12 @@
                   })
                     .addTo(map)
                     .bindPopup(
-                      "Yangın Sayısı:" + String(feature.properties.TOPLAM)
+                      String(feature.properties.ILCE) + " İlçesinde "+ String(feature.properties.AD) + " Mahallesinde ki Yangın Sayısı:" + String(feature.properties.TOPLAM)
                     );
                 }
                 // turuncu
                 else if (
-                  feature.properties.TOPLAM > 5 &&
+                  feature.properties.TOPLAM > 4 &&
                   feature.properties.TOPLAM < 10
                 ) {
                   L.polygon(coordinates[0], {
@@ -374,12 +521,12 @@
                   })
                     .addTo(map)
                     .bindPopup(
-                      "Yangın Sayısı:" + String(feature.properties.TOPLAM)
+                      String(feature.properties.ILCE) + " İlçesinde "+ String(feature.properties.AD) + " Mahallesinde ki Yangın Sayısı:" + String(feature.properties.TOPLAM)
                     );
                 }
                 // sarı
                 else if (
-                  feature.properties.TOPLAM > 10 &&
+                  feature.properties.TOPLAM > 9 &&
                   feature.properties.TOPLAM < 20
                 ) {
                   L.polygon(coordinates[0], {
@@ -389,7 +536,7 @@
                   })
                     .addTo(map)
                     .bindPopup(
-                      "Yangın Sayısı:" + String(feature.properties.TOPLAM)
+                      String(feature.properties.ILCE) + " İlçesinde "+ String(feature.properties.AD) + " Mahallesinde ki Yangın Sayısı:" + String(feature.properties.TOPLAM)
                     );
                 }
                 // kırmızı
@@ -404,11 +551,11 @@
                   })
                     .addTo(map)
                     .bindPopup(
-                      "Yangın Sayısı:" + String(feature.properties.TOPLAM)
+                      String(feature.properties.ILCE) + " İlçesinde "+ String(feature.properties.AD) + " Mahallesinde ki Yangın Sayısı:" + String(feature.properties.TOPLAM)
                     );
                 }
                 // siyah
-                else if (feature.properties.TOPLAM > 30) {
+                else if (feature.properties.TOPLAM > 29) {
                   L.polygon(coordinates[0], {
                     fillColor: "#011400",
                     color: "#011400",
@@ -416,7 +563,7 @@
                   })
                     .addTo(map)
                     .bindPopup(
-                      "Yangın Sayısı:" + String(feature.properties.TOPLAM)
+                      String(feature.properties.ILCE) + " İlçesinde "+ String(feature.properties.AD) + " Mahallesinde ki Yangın Sayısı:" + String(feature.properties.TOPLAM)
                     );
                 }
               }
