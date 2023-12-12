@@ -249,11 +249,12 @@
         } else {
 
         }
-        function reloadPage() {location.reload()}
+        
        
         // tek sene direkt olarak ilçeyi gösterecek, karşılaştırmada ikinci eklenen senenin opacity degeri farklı olmalı, opacity degeri sorunu çözmez ise; ilçeye bağlı iconlar eklenebilir, örneğin 1. sene fazlaysa aşağı ok iconu ve popup içi bilgilendirme gibi...
         // veri çekimi için algoritma oluşturulmadı ama seneye bağlı klasör oluşturularak; çekilecek veri klasör adında f-string kullanılabilir bu sayede seçilen seneye bağlı oto veri çekilir.
       }
+      function reloadPage() {location.reload()}
 
       function ilceGoster(yil) {
         var geojsonURL = `./FakeDB/ilceler/${yil}/${yil}.geojson`;
