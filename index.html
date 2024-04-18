@@ -52,9 +52,9 @@
           <div class="my-3" id="olayTuruKontrol" hidden>
             <select id="olayTuruSelectOpt" class="form-control" name="">
               <option value="">Olay Seçiniz</option>
-              <option value="">Yangın</option>
-              <option value="" disabled>Arama Kurtarma</option>
-              <option value="" disabled>KBRN</option>
+              <option value="yangin">Yangın</option>
+              <option value="aramaKurtarma">Arama Kurtarma</option>
+              <option value="kbrn" disabled>KBRN</option>
             </select>
             <button class="btn btn-primary w-100 mt-3" onclick="olaySecimiOnaylandi()">ONAYLA</button>
           </div>
@@ -230,19 +230,36 @@
       }
 
       function olayBaziSecimButonu(){
+        var olay = document.getElementById('olayTuruSelectOpt').value
         var gosterimYil = document.getElementById('seneSecSelectOpt').value
         var olayBazi = document.getElementById('olayBaziSec').value
-        if (olayBazi == 'ilce') {
-          ilceGoster(gosterimYil, 0)
+        if (olay == 'yangin') {
+          if (olayBazi == 'ilce') {
+            ilceGoster(gosterimYil, 0)
+          }
+
+          else if (olayBazi == "tumMah") {
+            tumMahGoster(gosterimYil, 0)
+          }
+
+          else if (olayBazi == 'mah') {
+            document.getElementById('ilceSecAlani').hidden = false
+          }
+        }
+        else if (olay == 'aramaKurtarma') {
+          if (olayBazi == 'ilce') {
+            ilce_aramaKurtarmaGoster(gosterimYil)
+          }
+
+          else if (olayBazi == "tumMah") {
+            alert('Bu alan üzerinde çalışmalar devam etmektedir.')
+          }
+
+          else if (olayBazi == 'mah') {
+            alert('Bu alan üzerinde çalışmalar devam etmektedir.')
+          }
         }
 
-        else if (olayBazi == "tumMah") {
-          tumMahGoster(gosterimYil, 0)
-        }
-
-        else if (olayBazi == 'mah') {
-          document.getElementById('ilceSecAlani').hidden = false
-        }
       }
 
       function ilceGoster(yil, karsiYil) {
@@ -562,7 +579,114 @@
         };
         xhr.send();
       }
-    </script>
+   
+   
+      // ilce arama kurtarma
+      function ilce_aramaKurtarmaGoster(yil) {
+        if (yil == '2020' || yil == '2021') {
+          alert('Veri Bulunamadı...')
+        }
+
+        var geojsonURL = `./FakeDB/ilceler/${yil}/aramaKurtarma${yil}.geojson`;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", geojsonURL, true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var geojson = JSON.parse(xhr.responseText);
+            // GeoJSON verilerini işleme
+            for (var i = 0; i < geojson.features.length; i++) {
+              var feature = geojson.features[i];
+              var coordinates = feature.geometry.coordinates;
+              // yesil
+              if (feature.properties.TOPLAM == 0) {
+                L.polygon(coordinates[0], {
+                  fillColor: "#007934",
+                  color: "#007934",
+                  fillOpacity: 0.75,
+                })
+                  .addTo(map)
+                  .bindPopup(
+                    String(feature.properties.AD) + " İlçesinde Arama Kurtarma Çalışması Yapılmadı.");
+              }
+              // lacivert
+              else if (
+                feature.properties.TOPLAM > 0 &&
+                feature.properties.TOPLAM < 10
+              ) {
+                L.polygon(coordinates[0], {
+                  fillColor: "#12127d",
+                  color: "#12127d",
+                  fillOpacity: 0.75,
+                })
+                  .addTo(map)
+                  .bindPopup(
+                    String(feature.properties.AD) + " İlçesindeki Arama Kurtarma Sayısı:" + String(feature.properties.TOPLAM)
+                  );
+              }
+              // turuncu
+              else if (
+                feature.properties.TOPLAM > 9 &&
+                feature.properties.TOPLAM < 30
+              ) {
+                L.polygon(coordinates[0], {
+                  fillColor: "#ff6700",
+                  color: "#ff6700",
+                  fillOpacity: 0.75,
+                })
+                  .addTo(map)
+                  .bindPopup(
+                    String(feature.properties.AD) + " İlçesindeki Arama Kurtarma Sayısı:" + String(feature.properties.TOPLAM)
+                  );
+              }
+              // sarı
+              else if (
+                feature.properties.TOPLAM > 29 &&
+                feature.properties.TOPLAM < 60
+              ) {
+                L.polygon(coordinates[0], {
+                  fillColor: "#dcff00",
+                  color: "#dcff00",
+                  fillOpacity: 0.75,
+                })
+                  .addTo(map)
+                  .bindPopup(
+                    String(feature.properties.AD) + " İlçesindeki Arama Kurtarma Sayısı:" + String(feature.properties.TOPLAM)
+                  );
+              }
+              // kırmızı
+              else if (
+                feature.properties.TOPLAM > 59 &&
+                feature.properties.TOPLAM < 80
+              ) {
+                L.polygon(coordinates[0], {
+                  fillColor: "#800000",
+                  color: "#800000",
+                  fillOpacity: 0.75,
+                })
+                  .addTo(map)
+                  .bindPopup(
+                    String(feature.properties.AD) + " İlçesindeki Arama Kurtarma Sayısı:" + String(feature.properties.TOPLAM)
+                  );
+              }
+              // siyah
+              else if (feature.properties.TOPLAM > 80) {
+                L.polygon(coordinates[0], {
+                  fillColor: "#011400",
+                  color: "#011400",
+                  fillOpacity: 0.75,
+                })
+                  .addTo(map)
+                  .bindPopup(
+                    String(feature.properties.AD) + " İlçesindeki Arama Kurtarma Sayısı:" + String(feature.properties.TOPLAM)
+                  );
+              }
+            }
+          }
+        };
+        xhr.send();
+      }
+
+   </script>
 
 
 
