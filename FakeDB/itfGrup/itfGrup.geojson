@@ -6,7 +6,7 @@
 { "type": "Feature", "properties": { "AD": "Esentepe İtfaiye Grubu"}, "geometry": { "type": "Point", "coordinates": [ 39.796513, 30.5176263 ] } },
 { "type": "Feature", "properties": { "AD": "Emek İtfaiye Grubu"}, "geometry": { "type": "Point", "coordinates": [ 39.7499833, 30.554087 ] } },
 { "type": "Feature", "properties": { "AD": "Batıkent İtfaiye Grubu"}, "geometry": { "type": "Point", "coordinates": [ 39.78582, 30.46654 ] } },
-{ "type": "Feature", "properties": { "AD": "Gültepe İtfaiye Grubu"}, "geometry": { "type": "Point", "coordinates": [ 39.75041, 30.51273 ] } },
+{ "type": "Feature", "properties": { "AD": "Merkez İtfaiye Grubu"}, "geometry": { "type": "Point", "coordinates": [ 39.75041, 30.51273 ] } },
 { "type": "Feature", "properties": { "AD": "İnönü İtfaiye Grubu"}, "geometry": { "type": "Point", "coordinates": [ 39.8236597, 30.144384 ] } },
 { "type": "Feature", "properties": { "AD": "Alpu İtfaiye Grubu"}, "geometry": { "type": "Point", "coordinates": [ 39.77121, 30.96099 ] } },
 { "type": "Feature", "properties": { "AD": "Beylikova İtfaiye Grubu" }, "geometry": { "type": "Point", "coordinates": [ 39.70361, 31.19229 ] } },
