@@ -123,6 +123,180 @@
             <button class="btn btn-primary w-100 mt-3" onclick="mahalleGoster()">ONAYLA</button>
           </div>
 
+
+
+          <div id="ilceLegend" hidden>
+            <table style="font-weight: bold;">
+              <tr><td colspan="2">İlçe Lejantı</td></tr>
+              <tr>
+                <td>
+                  Renk
+                </td>
+                <td style="width: 25px;"></td>
+                <td>
+                  Yangın Sayısı
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #007934;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  0
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #12127d;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  1 - 29
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #ff6700;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  30 - 59
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #dcff00;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  60 - 89
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #800000;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  90 - 119
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: #011400;"></td>
+                <td style="width: 25px;"></td>
+                <td>
+                  >120
+                </td>
+              </tr>
+            </table>
+        </div>
+
+        <div id="mahalleLegend" hidden>
+          <table style="font-weight: bold;">
+          <tr><td colspan="2">Mahalle Lejantı</td></tr>
+          <tr>
+              <td>
+                Renk
+              </td>
+              <td style="width: 25px;"></td>
+              <td>
+                Yangın Sayısı
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #007934;"></td>
+              <td style="width: 25px;"></td>
+              <td>
+                0
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #12127d;"></td>
+              <td style="width: 25px;"></td>
+              <td>
+                1 - 4
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #ff6700;"></td>
+              <td style="width: 25px;"></td>
+              <td>
+                5 - 9
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #dcff00;"></td>
+              <td style="width: 25px;"></td>
+              <td>
+                10 - 19
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #800000;"></td>
+              <td style="width: 25px;"></td>
+              <td>
+                20 - 29
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #011400;"></td>
+              <td style="width: 25px;"></td>
+              <td>
+                >30
+              </td>
+            </tr>
+          </table>
+      </div>
+
+
+      <div id="ilceKurtLegend" hidden>
+        <table style="font-weight: bold;">
+          <tr><td colspan="2">İlçe Lejantı</td></tr>
+          <tr>
+            <td>
+              Renk
+            </td>
+            <td style="width: 25px;"></td>
+            <td>
+              Yangın Sayısı
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #007934;"></td>
+            <td style="width: 25px;"></td>
+            <td>
+              0
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #12127d;"></td>
+            <td style="width: 25px;"></td>
+            <td>
+              1 - 9
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #ff6700;"></td>
+            <td style="width: 25px;"></td>
+            <td>
+              10 - 29
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #dcff00;"></td>
+            <td style="width: 25px;"></td>
+            <td>
+              30 - 59
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #800000;"></td>
+            <td style="width: 25px;"></td>
+            <td>
+              60 - 79
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #011400;"></td>
+            <td style="width: 25px;"></td>
+            <td>
+              >80
+            </td>
+          </tr>
+        </table>
+    </div>
+
         </div>
 
 
@@ -142,7 +316,12 @@
           </div>
         </div>
       </div>
+
+      
+
     </div>
+
+    
 
     <!-- Bootstrap -->
     <script
@@ -150,13 +329,6 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-
-
-
-
-
-
-
 
     <!-- Haritayı Ekleme ve Harita Ayarları -->
     <script>
@@ -280,6 +452,10 @@
       function reloadPage() {location.reload()}
 
       function ilceGoster(yil) {
+
+        document.getElementById('ilceLegend').hidden = false
+
+
         var geojsonURL = `./FakeDB/ilceler/${yil}/${yil}.geojson`;
         var xhr = new XMLHttpRequest();
         xhr.open("GET", geojsonURL, true);
@@ -380,6 +556,9 @@
       }
 
       function tumMahGoster(yil) {
+
+        document.getElementById('mahalleLegend').hidden = false
+
         var geojsonURL = `./FakeDB/mahalle/${yil}/${yil}.geojson`;
         var xhr = new XMLHttpRequest();
         xhr.open("GET", geojsonURL, true);
@@ -481,6 +660,10 @@
 
       // mahalle goster
       function mahalleGoster() {
+
+        document.getElementById('mahalleLegend').hidden = false
+
+
         var ilce = document.getElementById("ilceSec").value
         var year = document.getElementById("seneSecSelectOpt").value
         var geojsonURL = `./FakeDB/mahalle/${year}/${year}.geojson`;
@@ -590,6 +773,8 @@
         if (yil == '2020' || yil == '2021') {
           alert('Veri Bulunamadı...')
         }
+
+        document.getElementById('ilceKurtLegend').hidden= false
 
         var geojsonURL = `./FakeDB/ilceler/${yil}/aramaKurtarma${yil}.geojson`;
         var xhr = new XMLHttpRequest();
