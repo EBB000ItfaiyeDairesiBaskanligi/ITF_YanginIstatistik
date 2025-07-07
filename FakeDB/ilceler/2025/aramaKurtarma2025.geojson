@@ -14277,7 +14277,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 4
+        "TOPLAM": 6
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -24478,7 +24478,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 1
+        "TOPLAM": 2
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -37076,7 +37076,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 9
+        "TOPLAM": 12
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -48050,7 +48050,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 3
+        "TOPLAM": 4
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -49971,7 +49971,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 5
+        "TOPLAM": 9
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -67584,7 +67584,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 7
+        "TOPLAM": 9
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -74521,7 +74521,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 3
+        "TOPLAM": 5
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -86314,7 +86314,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 4
+        "TOPLAM": 5
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -104771,7 +104771,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 18
+        "TOPLAM": 26
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -129820,7 +129820,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 134
+        "TOPLAM": 192
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -143001,7 +143001,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 156
+        "TOPLAM": 244
       },
       "geometry": {
         "type": "MultiPolygon",
