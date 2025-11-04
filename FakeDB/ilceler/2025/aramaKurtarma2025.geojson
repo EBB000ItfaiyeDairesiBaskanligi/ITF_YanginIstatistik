@@ -14277,7 +14277,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 17
+        "TOPLAM": 20
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26375,7 +26375,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 8
+        "TOPLAM": 9
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -37076,7 +37076,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 13
+        "TOPLAM": 14
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -67584,7 +67584,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 16
+        "TOPLAM": 17
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -74521,7 +74521,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 5
+        "TOPLAM": 6
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -86314,7 +86314,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 12
+        "TOPLAM": 13
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -104771,7 +104771,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 37
+        "TOPLAM": 38
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -129820,7 +129820,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 364
+        "TOPLAM": 415
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -143001,7 +143001,7 @@
         "EKIM": 0,
         "KASIM": 0,
         "ARALIK": 0,
-        "TOPLAM": 426
+        "TOPLAM": 469
       },
       "geometry": {
         "type": "MultiPolygon",
