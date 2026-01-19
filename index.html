@@ -56,7 +56,6 @@
               <option value="">Olay Seçiniz</option>
               <option value="yangin">Yangın</option>
               <option value="aramaKurtarma">Arama Kurtarma</option>
-              <option value="kbrn" disabled>KBRN</option>
             </select>
             <button class="btn btn-primary w-100 mt-3" onclick="olaySecimiOnaylandi()">ONAYLA</button>
           </div>
@@ -65,6 +64,7 @@
             <div class="my-3">
               <select class="form-control" id="seneSecSelectOpt" name="" id="" hidden>
                 <option value="">Sene Seçiniz</option>
+                <option value="2026">2026</option>
                 <option value="2025">2025</option>
                 <option value="2024">2024</option>
                 <option value="2023">2023</option>
@@ -77,6 +77,7 @@
             <div class="mt-3">
               <select class="form-control mb-3" name="" id="seneSec2SelectOpt" hidden>
                 <option value="">Karşılaştırılacak Seneyi Seçiniz</option>
+                <option value="">2026</option>
                 <option value="">2025</option>
                 <option value="">2024</option>
                 <option value="">2023</option>
@@ -446,8 +447,7 @@
         }
         
        
-        // tek sene direkt olarak ilçeyi gösterecek, karşılaştırmada ikinci eklenen senenin opacity degeri farklı olmalı, opacity degeri sorunu çözmez ise; ilçeye bağlı iconlar eklenebilir, örneğin 1. sene fazlaysa aşağı ok iconu ve popup içi bilgilendirme gibi...
-        // veri çekimi için algoritma oluşturulmadı ama seneye bağlı klasör oluşturularak; çekilecek veri klasör adında f-string kullanılabilir bu sayede seçilen seneye bağlı oto veri çekilir.
+        // tek sene direkt olarak ilçeyi gösterecek, karşılaştırmada ikinci eklenen sene SLİDER ile sağa sola kaydırılabilir, OPENLAYERS te var...
       }
       function reloadPage() {location.reload()}
 
